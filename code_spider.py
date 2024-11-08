@@ -19,7 +19,8 @@ def get_text(url):
 
     # 从 Chrome 浏览器中获取的 cookies（这里需要手动复制并填充）
     cookies_dict = {
-        '_gitlab_session': '4a00051419b4b8a10df93ac2ccf4b043',
+        'OUTFOX_SEARCH_USER_ID_NCOO': '1815196188.3313549',
+        '_gitlab_session': '759e135cb35afe71f44d0c429ea9038e',
         't': '1730282060537'
         # ... 添加更多 cookies
     }
@@ -41,6 +42,13 @@ def parse(html):
     soup = BeautifulSoup(html, "html.parser")
     links = soup.find_all("a", class_="project")
     return [link["href"] for link in links]
+
+
+def parse_li(html):
+    soup = BeautifulSoup(html, "html.parser")
+    links = soup.find_all("li", class_="last")
+    return [link["href"] for link in links]
+
 
 
 if __name__ == '__main__':
